@@ -1,0 +1,26 @@
+@charset "UTF-8";
+body {
+    font-size: 12px;
+}
+section {
+    position: relative;
+    width: 90%;
+    min-width: 600px;
+    margin: 0px auto;
+}
+section form table tr th,td {
+    text-align: center;
+}
+.input-size {
+    width: 200px !important;
+    height: 35px !important;
+}
+.btn-container {
+    text-align: center;
+}
+.btn-container input {
+    margin: 10px 20px;
+}
+.form-align {
+    text-align: right;
+}

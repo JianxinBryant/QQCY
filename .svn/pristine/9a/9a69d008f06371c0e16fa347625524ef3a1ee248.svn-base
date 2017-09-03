@@ -1,0 +1,154 @@
+package com.qqcy.service.impl;
+
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.qqcy.dao.ShoppingCartInfoDao;
+import com.qqcy.dao.VegetableDao;
+import com.qqcy.po.ShoppingCartInfo;
+import com.qqcy.po.Vegetable;
+import com.qqcy.service.ShoppingCartInfoService;
+/**
+ * 购物车信息服务层实现类
+ * @author 张帅哥
+ *
+ */
+@Service
+public class ShoppingCartInfoServiceImpl implements ShoppingCartInfoService{
+
+	@Autowired
+	private ShoppingCartInfoDao shoppingCartInfoDao;
+	@Autowired
+	private VegetableDao vegetableDao;
+	
+	/**
+	 * 将蔬菜添加到购物车信息表中
+	 */
+	public void addCartInfo(ShoppingCartInfo shoppingCartInfo) {
+//		Integer v_id = shoppingCartInfo.getVegetable().getV_id();
+//		Vegetable vegetable = vegetableDao.getVegetableNumById(v_id);
+//		shoppingCartInfo.setShi_vegenum(vegetable.getV_num());
+		shoppingCartInfo.setShi_vegenum(10);	
+		shoppingCartInfo.setShi_status("true");
+		shoppingCartInfoDao.addCartInfo(shoppingCartInfo);
+	}
+	
+	/**
+	 * 显示该用户的信息表
+	 */
+	public List<ShoppingCartInfo> getCartInfoList(ShoppingCartInfo shoppingCartInfo){
+		if(shoppingCartInfo.getUser().getU_id() != null){
+			List<ShoppingCartInfo> shoppingCartInfos = shoppingCartInfoDao.getCartInfoList(shoppingCartInfo);
+			for (ShoppingCartInfo info : shoppingCartInfos) {
+				Integer id = info.getVegetable().getV_id();
+				Vegetable vegetable = vegetableDao.getVegetableById(id);
+				info.setVegetable(vegetable);
+			}
+			return shoppingCartInfos;
+		}
+		return null;
+	}
+
+
+	/**
+	 * 购物车条件查询，根据条件显示该用户的信息表
+	 */
+	public List<ShoppingCartInfo> getCartInfoListInConditions(ShoppingCartInfo shoppingCartInfo){
+		List<ShoppingCartInfo> list = new ArrayList<ShoppingCartInfo>();
+		ShoppingCartInfo sInfo = null;
+		//根据Vegetable的v_name模糊查询得到list
+		if(shoppingCartInfo.getVegetable().getV_name() != null){
+			Vegetable vegetable = shoppingCartInfo.getVegetable();
+			vegetable.setV_name("%" + vegetable.getV_name() + "%");
+			shoppingCartInfo.setVegetable(vegetable);
+		}
+		
+		List<Vegetable> vegetables = vegetableDao.getVegetableList(shoppingCartInfo.getVegetable());
+		if(shoppingCartInfo.getUser().getU_id() != null){
+			//根据u_id全查询
+			List<ShoppingCartInfo> shoppingCartInfos = getCartInfoList(shoppingCartInfo);
+			if(shoppingCartInfo.getVegetable().getV_name() != null){
+				for (ShoppingCartInfo info : shoppingCartInfos) {
+					for (Vegetable v : vegetables) {
+//						info.setVegetable(v);
+						if(info.getVegetable().getV_id() == v.getV_id()){
+							//通过一个蔬菜id得到购物车表的单行信息
+							 sInfo = shoppingCartInfoDao.getCartInfoByV_id(info);
+							 Vegetable vegetable = vegetableDao.getVegetableById(info.getVegetable().getV_id());
+							 sInfo.setVegetable(vegetable);
+							 list.add(sInfo);
+						}
+						
+					}
+					
+				}
+				return list;
+			}
+			return null;
+		}
+		return null;
+	}
+
+	public void updateCartInfoVege_numInCart(ShoppingCartInfo shoppingCartInfo) {
+		
+		shoppingCartInfoDao.updateCartInfoVege_num(shoppingCartInfo);
+		
+	}
+	
+	public void updateCartInfoVege_numOutCart(ShoppingCartInfo shoppingCartInfo){
+		
+		shoppingCartInfoDao.updateCartInfoVege_num(shoppingCartInfo);
+	}
+	
+	public void updateCartInfoShi_status(ShoppingCartInfo shoppingCartInfo) {
+		
+		System.out.println("status: " + shoppingCartInfo.getShi_status());
+		if(shoppingCartInfo.getShi_status().equals("true")){
+			shoppingCartInfo.setShi_status("false");
+		}else{
+			shoppingCartInfo.setShi_status("true");
+		}
+		shoppingCartInfoDao.updateCartInfoShi_status(shoppingCartInfo);
+		
+	}
+
+	public void deleteCartInfo(ShoppingCartInfo shoppingCartInfo) {
+		
+		shoppingCartInfoDao.deleteCartInfo(shoppingCartInfo);
+		
+	}
+	
+	public void incrementVege_num(ShoppingCartInfo shoppingCartInfo){
+		
+		ShoppingCartInfo shoppingCartInfo2 = shoppingCartInfoDao.getCartInfoByV_id(shoppingCartInfo);
+		Double vegenum = shoppingCartInfo2.getShi_vegenum();
+		vegenum = vegenum + 1;
+		shoppingCartInfo.setShi_vegenum(vegenum);
+		shoppingCartInfoDao.updateCartInfoVege_num(shoppingCartInfo);
+	}
+	
+	public void decrementVege_num(ShoppingCartInfo shoppingCartInfo){
+		
+		ShoppingCartInfo shoppingCartInfo2 = shoppingCartInfoDao.getCartInfoByV_id(shoppingCartInfo);
+		Double vegenum = shoppingCartInfo2.getShi_vegenum();
+		vegenum = vegenum - 1;
+		shoppingCartInfo.setShi_vegenum(vegenum);
+		shoppingCartInfoDao.updateCartInfoVege_num(shoppingCartInfo);
+	}
+
+	public ShoppingCartInfo getCartInfoByV_id(ShoppingCartInfo shoppingCartInfo) {
+		
+		return shoppingCartInfoDao.getCartInfoByV_id(shoppingCartInfo);
+	}
+	
+	
+
+
+	
+	
+
+}

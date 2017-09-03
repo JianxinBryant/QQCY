@@ -1,0 +1,32 @@
+.top { position: fixed; left: 0; right: 0; top: 0; z-index: 999; height: 100px; background-color: rgba(0, 0, 0, 0.6);}
+.menu { width: 1000px; margin: 0 auto; overflow: hidden;}
+a{
+    margin: 1.5px;
+    color: white;
+    text-decoration-line: none;
+    font-size: 24px;
+}
+.link{
+    position: fixed;
+    top: 20px;
+    width: 230px;
+    height: 80px;
+    right: 10px;
+    overflow: hidden;
+}
+.logo{
+    position: absolute;
+    height: 76px;
+    width: 334px;
+    top: 10px;
+    left: 30px;
+    background-size: 100%;
+    background-image: url("../img/logo.png");
+}
+.text{
+    position: fixed;
+    top: 120px;
+    height: 326px;
+    width: 337px;
+    right: 45px;
+}

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qqcy.dao.UserDao">
+	
+	<!-- 结果映射map -->
+	<resultMap type="User" id="UserMap">
+		<id column="u_id" property="u_id" />
+		<result column="u_username" property="u_username"/>
+		<result column="u_password" property="u_password"/>
+		<result column="u_truename" property="u_truename"/>
+		<result column="u_sex" property="u_sex"/>
+		<result column="u_email" property="u_email"/>
+		<result column="u_telephone" property="u_telephone"/>
+		<result column="u_avatar" property="u_avatar"/>
+		<result column="u_createtime" property="u_createtime"/>
+		<result column="u_address" property="u_address"/>
+	</resultMap>
+
+	<!--ID等于接口的方法名  -->
+	<select id="find" parameterType="User" resultMap="UserMap">
+		select * from `user` where u_username = #{u_username}
+	</select>
+	
+	<insert id="add" parameterType="User">
+		insert into `user` (`u_username`,`u_password`,`u_truename`,`u_sex`,`u_email`,`u_telephone`,`u_avatar`,`u_createtime`,`u_address`) 
+			values (#{u_username},#{u_password},#{u_truename},#{u_sex},#{u_email},#{u_telephone},#{u_avatar},#{u_createtime},#{u_address})
+	</insert>
+
+</mapper>

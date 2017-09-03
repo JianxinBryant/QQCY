@@ -1,0 +1,59 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+session.setAttribute("basePath",basePath);
+%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <base href="<%=basePath%>">
+    
+    <title>My JSP 'myOrder.jsp' starting page</title>
+    
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">    
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	<meta http-equiv="description" content="This is my page">
+	
+	<link rel="stylesheet" type="text/css" href="${basePath }res/css/myorder.css">
+	<link rel="stylesheet" type="text/css" href="${basePath }res/css/bootstrap.min.css " />
+	<script type="text/javascript" src="${basePath }res/js/bootstrap.min.js "></script>
+
+  </head>
+  
+  <body>
+	<div class="container-fluid">
+		<!-- 头部 -->
+		<div class="row" id="head">
+			<div class="col-md-2">col-md-2</div>
+			<div class="col-md-8"><h1>我的订单</h1></div>
+			<div class="col-md-2">col-md-2</div>
+		</div>
+		
+		<!-- 主体 -->
+		<div class="row" id="main" >
+			<div class="col-md-2">col-md-2</div>
+			<div class="col-md-8 yuanjiao" >
+				<!-- 表格 -->
+				<table class="biaoge">
+					<tr class="biaogetou">
+						<th class="datatime">2017-06-30 13:51</th>
+						<th>订单号：123456789</th>
+						<th>数量</th>
+						<th>金额</th>
+						<th>剩余时间：6小时52分钟</th>
+					</tr>
+				</table>
+				
+			</div>
+			<div class="col-md-2">col-md-2</div>
+		</div>
+			
+		
+	</div>
+
+</body>
+</html>

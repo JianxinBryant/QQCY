@@ -1,0 +1,7 @@
+package com.qqcy.controller;
+
+import com.qqcy.util.BaseController;
+
+public class VegetableController extends BaseController{
+
+}

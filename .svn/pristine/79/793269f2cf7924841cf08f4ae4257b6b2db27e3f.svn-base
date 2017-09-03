@@ -1,0 +1,151 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+	session.setAttribute("basePath", basePath);
+%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>欢迎来到购物车</title>
+<script type="text/javascript"
+	src="${basePath }res/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript"
+	src="${basePath }res/js/bootstrap.min.js "></script>
+<script type="text/javascript"
+	src="${basePath }res/js/shoppingCartInfo.js"></script>
+<link rel="stylesheet" type="text/css" href="${basePath }res/css/common.css" />
+<link rel="stylesheet" type="text/css" href="${basePath }res/css/reset.css" />
+<link rel="stylesheet" type="text/css" href="${basePath }res/css/bootstrap.min.css">
+</head>
+
+<body>
+	<div class="Store-header">
+		<div class="item1">
+			<div class="image-box">
+				<img src="${basePath }res/img/logo.png" name="tips" />
+			</div>
+			<div class="image-tips">
+				<h1>购物车</h1>
+			</div>
+		</div>
+		<div class="item2">
+			<form action="${basePath }shoppingcartinfo/conditionslist.do"
+				method="post">
+				<input type="text" name="v_name" class="input-large " />
+				 <input type="submit" value="提交" class="btn btn-primary btn-lg"/>
+			</form>
+
+			<!--    <input type="button" value="搜索" class="btn-large"/>-->
+			<!-- <a href="#" class="btn-large"><img name="selectbar" src="${basePath }res/img/selectbar.png"/></a> -->
+
+		</div>
+	</div>
+	<div >
+		<div class="top">
+			<h2>全部商品</h2>
+		</div>
+		<hr />
+		<div class="Store-mainbox table table-hover">
+			<table class="">
+				<tr>
+					<td><input type="checkbox" onchange="checkbox_changed"
+						name="Store-check-list" /><label>全选</label></td>
+					<td>商品信息</td>
+					<td>单价</td>
+					<td>数量</td>
+					<td>金额</td>
+					<td>操作</td>
+				</tr>
+				<c:forEach items="${shoppingCartInfos }" var="cartInfo">
+					<tr>
+						<td>
+							<div class="view-box">
+								<div class="left">
+								<c:choose>
+									<c:when test="${cartInfo.shi_status=='false'}">
+										<input type="checkbox" name="cart_check"
+											id="${cartInfo.vegetable.v_id }" onchange="updateCheckbox()" />
+									</c:when>
+									<c:otherwise>
+										<input type="checkbox" name="cart_check"
+											id="${cartInfo.vegetable.v_id }" onchange="updateCheckbox()" checked="checked"/>
+									</c:otherwise>
+								</c:choose>
+								</div>
+
+								<div class="img-box  left">
+									<a href="?${cartInfo.vegetable.v_id }"> <img
+										src="${cartInfo.vegetable.v_photo }" />
+									</a>
+
+								</div>
+								<div class=" left">
+									<label id="info1">${cartInfo.vegetable.v_name }</label>
+								</div>
+							</div>
+						</td>
+
+
+						<td>
+							<div>
+								<label id="info2">${cartInfo.vegetable.v_discribe }</label>
+							</div>
+						</td>
+
+
+						<td>
+							<div>
+								<label id="info3">${cartInfo.vegetable.v_price }</label>
+							</div>
+						</td>
+
+
+						<td>
+							<div>
+								<!-- <label id="info4">shu</label> -->
+								<input type="button" name="" value="-"
+									onclick="updateDecrement(${cartInfo.vegetable.v_id})" /> 
+									<input type="text" id="shi_vegenum${cartInfo.vegetable.v_id }" name="shi_vegenum" value="${cartInfo.shi_vegenum }" class="input-sm" onblur="updateOnBlur(${cartInfo.vegetable.v_id})" /> 
+									<input type="button" id="add" name="" value="+" onclick="updateIncrement(${cartInfo.vegetable.v_id})" />
+
+							</div>
+						</td>
+
+
+
+						<td><label id="info5${cartInfo.vegetable.v_id }">${cartInfo.shi_vegenum*cartInfo.vegetable.v_price }</label>
+						</td>
+
+
+						<td><a
+							href="${basePath }shoppingcartinfo/delete.do?v_id=${cartInfo.vegetable.v_id}">删除</a>
+							<a href="#"></a></td>
+
+						<td><span id="v_id" style="display: none">${cartInfo.vegetable.v_id}</span>
+						</td>
+
+						<td><span name="shi_status" style="display: none">${cartInfo.shi_status }</span>
+					</tr>
+				</c:forEach>
+
+			</table>
+		</div>
+	</div>
+	<div >
+
+	
+		<div  class="info">
+			已选中<span style="color: red" id="checked_quantity_span">0</span>件商品
+			总金额：<span id="finalprice" style="color: red"></span>
+		</div>
+			<a class="btn btn-warning btn-lg " href="index.html" style="float:right; margin-right:300px;">结算</a>
+	</div>
+</body>
+</html>

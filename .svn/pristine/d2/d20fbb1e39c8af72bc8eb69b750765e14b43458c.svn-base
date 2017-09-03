@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qqcy.dao.OrderInfoDao">
+	<resultMap type="OrderInfo" id="OrderInfoMap">
+		<id column="oi_id" property="oi_id"/>
+		<result column="oi_vegenum" property="oi_vegenum"/>
+		<result column="v_id" property="vegetable.v_id"/>
+		<result column="o_id" property="order.o_id"/>
+	</resultMap>
+
+	<select id="getOrderInfoList" parameterType="Order" resultMap="OrderInfoMap">
+		select * from `orderinfo` where o_id = #{o_id}
+	</select>
+	
+	<insert id="addOrderInfo" parameterType="OrderInfo">
+		insert into `orderinfo` (`oi_vegenum`,`v_id`,`o_id`) values (#{oi_vegenum},#{vegetable.v_id},#{order.o_id})
+	</insert>
+</mapper>

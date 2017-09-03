@@ -1,0 +1,90 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+.top { position: absolute; left: 0; right: 0; top: 0; z-index: 99; height: 60px; background-color: rgba(0, 0, 0, 0.6);}
+.menu { width: 100%; margin: 0 auto; overflow: hidden;}
+a{
+    margin: 0px;
+    color: white;
+    text-decoration-line: none;
+    font-size: 18px;
+}
+.link{
+    position: absolute;
+    margin-top: 15px;
+    width: 430px;
+    height: 45px;
+    right: 20px;
+    overflow: hidden;
+}
+.input{
+    position: relative;
+    height: 30px;
+    width: 160px;
+}
+.logo{
+    position: absolute;
+    height: 50px;
+    width: 120px;
+    top: 10px;
+    left: 30px;
+    background-size: cover;
+}
+.containner1{
+    position: relative;
+    padding-top: 60px;
+    margin: auto;
+    width: 70%;
+    height: 500px;
+}
+.containner1 img{
+    position: relative;
+    float: left;
+    height: 400px;
+    width: 400px;
+    margin: 20px;
+}
+.containner1_2{
+    position: relative;
+    margin: 20px;
+    height: 400px;
+}
+.containner1 ul dd{
+    margin: 3px;
+}
+.btn1{
+    position: absolute;
+    margin: 2px;
+    left: 560px;
+    bottom: 10px;
+    width: 120px;
+    height: 30px;
+    font-size: 16px;
+    text-align: center;
+    color: indianred;
+    background-color:#d31e29;
+    border: 2px solid #d1d1d1;
+    cursor: pointer;
+}
+.btn2{
+    position: absolute;
+    left: 420px;
+    bottom: 10px;
+    margin: 2px;
+    width: 120px;
+    height: 30px;
+    font-size: 16px;
+    text-align: center;
+    background-color: #dca7a7;
+    border: 2px solid #dd4e4f;
+    cursor: pointer;
+}
+.containner2{
+    position: relative;
+    margin: auto;
+    width: 70%;
+}
+.containner2 p>img{
+    width: 100% !important;
+}

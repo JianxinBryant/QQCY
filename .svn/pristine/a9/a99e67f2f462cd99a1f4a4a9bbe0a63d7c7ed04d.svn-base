@@ -1,0 +1,9 @@
+/* CSS Document */
+body,div,dd,dt,dl,h1,h2,h3,h4,h5,ol,ul,li,a,p,input,form,textarea
+{ margin:0; padding:0; font-family:Verdana, Geneva, sans-serif;}
+ol,ul,li{ list-style:none;}
+a{ text-decoration:none; display:block;}
+img{ border:none; display:block;}
+.clearfloat{ zoom:1;}
+.clearfloat:after{ display:block; clear:both; content:""; visibility:hidden; height:0; }
+<!--.left{float:left;}-->

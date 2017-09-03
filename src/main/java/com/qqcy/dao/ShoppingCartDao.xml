@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qqcy.dao.ShoppingCartDao">
+	<resultMap type="ShoppingCart" id="shoppingcartmap">
+		<id column="u_id" property="user.u_id"/>
+		<result column="sh_sumprice" property="sh_sumprice"/>
+	</resultMap>
+
+	<insert id="addCart" parameterType="ShoppingCart">
+		insert into shoppingcart(u_id,sh_sumprice) values(#{u_id},#{sh_sumprice})
+	</insert>
+	
+	<update id="updateCart" parameterType="ShoppingCart">
+		update shoppingcart set sh_sumprice = #{sh_sumprice}
+		<where>
+			<if test="user != null and user.u_id != null and user.u_id != 0">
+				and u_id = #{user.u_id}
+			</if>
+		</where>
+	</update>
+	
+	<select id="getShoppingCart" resultMap="shoppingcartmap" parameterType="ShoppingCart"> 
+		select * from `shoppingcart` where u_id = #{user.u_id} 
+	</select>
+	
+	
+</mapper>

@@ -1,0 +1,101 @@
+package com.qqcy.controller;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.qqcy.po.Species;
+import com.qqcy.po.Vegetable;
+import com.qqcy.service.SpeciesService;
+import com.qqcy.service.VegetableService;
+import com.qqcy.util.BaseController;
+
+/**
+ * 蔬菜管理的控制器
+ * 
+ * @author Administrator
+ *
+ */
+@Controller
+@RequestMapping("/vegetable/")
+public class VegetableController extends BaseController {
+
+	@Autowired
+	private VegetableService vegetableService;
+	@Autowired
+	private SpeciesService speciseService;
+	/**
+	 * 添加蔬菜的方法
+	 * @return
+	 * @throws UnsupportedEncodingException 
+	 */
+	@RequestMapping("add.do")
+	public String add(Vegetable vegetable,Model model,HttpServletRequest request) throws UnsupportedEncodingException{
+		//调用业务层的方法添加蔬菜
+		vegetableService.addVegetable(vegetable);
+		return list(new Vegetable(),model,request);
+	}
+	/**
+	 * 查询所有蔬菜信息
+	 * @return
+	 * @throws UnsupportedEncodingException 
+	 */
+	@RequestMapping("list.do")
+	public String list(Vegetable vegetable,Model model,HttpServletRequest request) throws UnsupportedEncodingException{
+		
+		//处理乱码
+		if(vegetable.getV_name() !=null && !vegetable.getV_name().equals("")){
+			vegetable.setV_name(URLDecoder.decode(vegetable.getV_name(),"UTF-8"));
+		}
+		
+		//model中设置查询条件
+		if(vegetable.getV_name() !=null && !vegetable.getV_name().equals("")){
+			model.addAttribute("vegetablenamequery",URLDecoder.decode(vegetable.getV_name(),"UTF-8"));
+		}
+		if(vegetable.getSpecies()!=null){
+			model.addAttribute("vegetablespeciesidquery", vegetable.getSpecies().getSp_id());
+					
+		}
+		
+		//初始化分页信息
+		this.initPage(request);
+		vegetable.setStart(getStart());//设置起始记录数
+		
+		//按分页/条件查询所有蔬菜记录
+		List<Vegetable> vegetables = vegetableService.getVegetableList(vegetable);
+		//向model中保存数据
+		model.addAttribute("vegetables", vegetables);
+	
+		
+		//按条件查询所有蔬菜记录数
+		Long total=vegetableService.getCount(vegetable);
+		model.addAttribute("total",total);
+		
+	
+		
+		//查询出所有的种类
+		List<Species> speciess=speciseService.getSpeciesList();
+		model.addAttribute("speciess", speciess);
+		return "Mindex";
+	}
+	
+	/**
+	 * 添加蔬菜的页面（查询出所有的种类）
+	 * @return
+	 */
+	@RequestMapping("loadadd.do")
+	public String loadAdd(Model model, SpeciesService speciesService){
+		//查询出所有的班级
+		List<Species> speciess=speciesService.getSpeciesList();
+		model.addAttribute("speciess", speciess);
+		return "vegetable_add";
+	}
+}
+

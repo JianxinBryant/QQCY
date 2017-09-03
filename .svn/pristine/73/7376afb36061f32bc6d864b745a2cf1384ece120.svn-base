@@ -1,0 +1,32 @@
+/* CSS Document */
+.item1 .image-box{ float:left;margin-right:10px;width:205px;height:198px;}
+.item1 .image-tips{ margin-top:90px;float:left;width:500px;}
+.Store-header{ position:relative; margin:0 auto; height:198px;width:1200px;}
+.item2{ float:right;margin-top:90px;width:418px;}
+.input-large{ position:relative;height:40px;width:300px;}
+.btn-large{float:right;position:relative;height:44px;width:114px;}
+.Store-mainbox{position:relative; margin:0 auto; height:300px;width:1200px;}
+.top{ margin:20px; border:red solid 1px; width:97px;}
+td{ width:320px;}
+.border-add{border:gray solid 1px;}
+.input-sm{position:relative;height:20px;width:30px;}
+.center{ text-align:center;}
+.left{ float:left}
+.img-box{ height:80px;width:100px; display:inline-block;}
+img{ width:100%}
+.view-box{height:100px;width:200px; margin-top:30px;}
+.Store-footer{position:relative; margin:0 auto; height:300px;width:1200px;}
+.right{float:right;}
+.font{ text-align:center;font-size:30px; width:80px; background-color:gray; border-radius:10%;}
+a:hover{color:#C00}
+.font-num{font-size:30px; color:#C00;}
+.bck{ background-color:gray; text-align:center;}
+
+/*PersonInfo*/
+.container{position:relative; margin:0 auto; height:600px;width:1100px;}
+.font-sm{ font-size:11px;}
+.moveleft{ margin-left:30%;}
+.moveDown{ margin-top:30px;}
+.font-lg{ font-size:24px;}
+.margin-l{ margin-left:40px; width:300px; background-color:#0FC; border-radius:5px;}
+.input-md{position:relative;height:30px;width:300px;}

@@ -1,0 +1,8 @@
+package com.qqcy.dao;
+
+import com.qqcy.po.ShoppingCart;
+
+public interface ShoppingCartDao {
+
+	public ShoppingCart getShoppingCart(ShoppingCart shoppingCart);
+}

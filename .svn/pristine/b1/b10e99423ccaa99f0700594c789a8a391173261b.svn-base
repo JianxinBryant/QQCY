@@ -1,0 +1,15 @@
+package com.qqcy.service;
+
+import java.util.List;
+
+import com.qqcy.po.Species;
+
+/**
+ * 蔬菜类别信息管理的核心业务接口
+ * @author Administrator
+ *
+ */
+public interface SpeciesService {
+		public List<Species> getSpeciesList();
+
+}

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qqcy.dao.ManagerDao">
+	
+	<!-- 结果映射map -->
+	<resultMap type="Manager" id="ManagerMap">
+		<id column="m_id" property="m_id" />
+		<result column="m_username" property="m_username"/>
+		<result column="m_password" property="m_password"/>
+		<result column="m_lasttime" property="m_lasttime"/>
+	</resultMap>
+
+	<!--ID等于接口的方法名  -->
+	<select id="find" parameterType="Manager" resultMap="ManagerMap">
+		select * from `manager` where m_username = #{m_username}
+	</select>
+
+</mapper>

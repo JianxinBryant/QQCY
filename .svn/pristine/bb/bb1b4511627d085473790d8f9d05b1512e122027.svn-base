@@ -1,0 +1,26 @@
+package com.qqcy.util;
+
+import javax.servlet.http.HttpServletRequest;
+
+public class BaseController {
+	private Long start;
+
+	public Long getStart() {
+		return start;
+	}
+
+	public void setStart(Long start) {
+		this.start = start;
+	}
+	
+	public void initPage(HttpServletRequest request){
+		String str = request.getParameter("pager.offset");
+		if(str != null && !str.equals("")){
+
+			start = Long.parseLong(str);
+		}else{
+			start = (long) 0;
+		}
+	}
+	
+}

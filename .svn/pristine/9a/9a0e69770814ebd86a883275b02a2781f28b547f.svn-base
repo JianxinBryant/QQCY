@@ -1,0 +1,39 @@
+package com.qqcy.po;
+
+import com.qqcy.util.BaseBean;
+/**
+ * 购物车实体
+ * @author Administrator
+ *
+ */
+public class ShoppingCart extends BaseBean{
+	private Integer sh_id;
+	
+	private String sh_createtime;
+	
+	private double sh_sumprice;
+
+	public Integer getSh_id() {
+		return sh_id;
+	}
+
+	public void setSh_id(Integer sh_id) {
+		this.sh_id = sh_id;
+	}
+
+	public String getSh_createtime() {
+		return sh_createtime;
+	}
+
+	public void setSh_createtime(String sh_createtime) {
+		this.sh_createtime = sh_createtime;
+	}
+
+	public double getSh_sumprice() {
+		return sh_sumprice;
+	}
+
+	public void setSh_sumprice(double sh_sumprice) {
+		this.sh_sumprice = sh_sumprice;
+	}
+}

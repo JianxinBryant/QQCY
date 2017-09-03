@@ -1,0 +1,119 @@
+html{
+    height: 100%;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    background-color: whitesmoke;
+    height: 100%;
+}
+*{
+    margin: 0px;
+    padding: 0px;
+}
+.top { position: absolute; left: 0; flex: 0 0 auto;right: 0; top: 0; z-index: 99; height: 60px; background-color: rgba(0, 0, 0, 0.6);}
+.menu { width: 100%; margin: 0 auto; overflow: hidden;}
+a{
+    margin: 0px;
+    color: white;
+    text-decoration-line: none;
+    font-size: 18px;
+}
+.link{
+    position: absolute;
+    margin-top: 15px;
+    width: 430px;
+    height: 45px;
+    right: 20px;
+    overflow: hidden;
+}
+.input{
+    position: relative;
+    height: 30px;
+    width: 160px;
+}
+.logo{
+    position: absolute;
+    height: 50px;
+    width: 120px;
+    top: 10px;
+    left: 30px;
+    background-size: cover;
+}
+.containner{
+    position: relative;
+    padding-top: 80px;
+    width: 1150px;
+    min-width: 1150px;
+    margin: auto;
+    flex: 1 0 auto;
+}
+.containner1{
+	padding-top:10px;
+    width: 541px;
+    height: 287px;
+    margin: 20px 20px 0px 0px;
+    float: left;
+    margin: 10px;
+    background-color: white;
+}
+.containner1:hover{
+    box-shadow: 2px 2px 10px 0px #8a8a8a;
+}
+.containner img{
+    float: left;
+    width: 220px;
+    height: 220px;
+}
+.containner2{
+    padding-left: 230px;
+    width: 300px;
+    height: 250px;
+}
+.btn1{
+    height:30px;
+    width: 100px;
+    color: white;
+    margin: 8px;
+    text-align: center;
+    background-color: #d9534f;
+    border: 1px solid #d31e29;
+}
+.btn2{
+    height:30px;
+    width: 100px;
+    color: #1f1f1f;
+    margin: 8px;
+    text-align: center;
+    background-color: white;
+    border: 1px solid #1f1f1f;
+}
+.btn1:hover{
+    box-shadow: 1px 1px 5px 0px #575757;
+}
+.btn2:hover{
+    box-shadow: 1px 1px 5px 0px #575757;
+}
+dd{
+    margin: 10px;
+}
+.footer{
+	position:relative; 
+    width: 100%;
+    height: 150px;
+    flex: 0 0;
+	background-color: rgba(3,111,3,0.7);
+}
+.footer .img{
+	position:relative;
+	margin:30px auto 0;
+	height: 100px;
+	width: 150px;
+}
+.footer .text{
+	position: relative;
+	margin: auto;
+	height: 100px;
+	width: 220px;
+}

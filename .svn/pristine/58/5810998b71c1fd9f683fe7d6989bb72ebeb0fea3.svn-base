@@ -1,0 +1,5 @@
+package com.qqcy.service;
+
+public interface VegetableService {
+
+}

@@ -1,0 +1,19 @@
+package com.qqcy.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.qqcy.util.BaseController;
+/**
+ * 购物车控制器层
+ * @author 张帅哥
+ *
+ */
+@Controller
+@RequestMapping("/shoppingcart/")
+public class ShoppingCartController extends BaseController{
+
+	
+	
+	
+}

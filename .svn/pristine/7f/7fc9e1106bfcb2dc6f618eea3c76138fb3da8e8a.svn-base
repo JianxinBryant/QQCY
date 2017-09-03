@@ -1,0 +1,25 @@
+package com.qqcy.dao;
+
+import java.util.List;
+
+import com.qqcy.po.Species;
+
+
+/**
+ * 对蔬菜种类数据操作的接口
+ * @author Administrator
+ *
+ */
+public interface SpeciesDao {
+	/**
+	 * 查询所有记录
+	 * @return
+	 */
+	public List<Species> getSpeciesList();
+	/**
+	 * 根据id查询种类记录
+	 * @param id
+	 * @return
+	 */
+	public Species getSpeciesBySp_id(Integer sp_id);
+}

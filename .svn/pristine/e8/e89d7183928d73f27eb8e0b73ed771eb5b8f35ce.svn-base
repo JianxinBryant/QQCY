@@ -1,0 +1,12 @@
+package com.qqcy.service.impl;
+
+import com.qqcy.service.ShoppingCartService;
+
+/**
+ * 购物车服务层实现类
+ * @author 张帅哥
+ *
+ */
+public class ShoppingCartServiceImpl implements ShoppingCartService{
+
+}

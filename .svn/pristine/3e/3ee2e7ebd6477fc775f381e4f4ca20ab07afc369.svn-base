@@ -1,0 +1,19 @@
+package com.qqcy.util;
+
+public class BaseBean {
+	private Long start;
+	private Long length;
+	public Long getStart() {
+		return start;
+	}
+	public void setStart(Long start) {
+		this.start = start;
+	}
+	public Long getLength() {
+		return length;
+	}
+	public void setLength(Long length) {
+		this.length = length;
+	}
+	
+}

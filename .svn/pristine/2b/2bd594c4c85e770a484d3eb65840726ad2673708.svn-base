@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qqcy.dao.OrderDao">
+	
+	<!-- 结果映射map -->
+	<resultMap type="Order" id="OrderMap">
+		<id column="o_id" property="o_id" />
+		<result column="o_createtime" property="o_createtime"/>
+		<result column="o_sumprice" property="o_sumprice"/>
+		<result column="o_status" property="o_status"/>
+		<result column="u_id" property="user.u_id"/>
+	</resultMap>
+	
+	<resultMap type="Order" id="OrderStatusMap">
+		<id column="o_id" property="o_id"></id>
+		<result column="o_status" property="o_status"/>
+	</resultMap>
+
+	<!--ID等于接口的方法名  -->
+	<select id="getOrderList" parameterType="User" resultMap="OrderMap">
+		select * from `order` where u_id = #{u_id}
+	</select>
+	
+	<!-- 通过v_id单查询状态 -->
+	<select id="getOrderStatusById" parameterType="Order" resultMap="OrderStatusMap">
+		select `o_id`,`o_status` from `order` where o_id = #{o_id}
+	</select>
+	
+	<update id="finishOrder" parameterType="Order">
+		update `order` set `o_status` = #{o_status} where o_id = #{o_id}
+	</update>
+	
+	<insert id="addOrder" parameterType="Order">
+		insert into `order` (`o_id`,`o_createtime`,`o_sumprice`,`o_status`,`u_id`) values (#{o_id},#{o_createtime},#{o_sumprice},#{o_status},#{user.u_id})
+	</insert>
+
+</mapper>

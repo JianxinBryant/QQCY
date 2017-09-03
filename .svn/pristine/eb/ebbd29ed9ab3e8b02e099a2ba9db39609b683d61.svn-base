@@ -1,0 +1,39 @@
+/* CSS Document */
+html{ background-color: #777;overflow-x: hidden}
+.item1 .image-box{ float:left;margin-right:10px;width:205px;height:198px;}
+.item1 .image-tips{ margin-top:90px;float:left;width:500px;}
+.Store-header{ position:relative; margin:0 auto; height:198px;width:1200px;flex: 0 0 auto;}
+.item2{ float:right;margin-top:90px;width:418px;}
+.input-large{ position:relative;height:40px;width:300px;}
+.btn-large{float:right;position:relative;height:44px;width:114px;}
+/*.Store-mainbox{position:relative; margin:0 auto; height:300px;width:1200px; flex: 1 0 auto;}*/
+.Store-mainbox{margin-left:200px;}
+.top{ margin-left:110px;  width:400px;}
+td{ width:320px;}
+.border-add{border:gray solid 1px;}
+.input-sm{position:relative;height:20px;width:50px;}
+.center{ text-align:center;}
+.left{ float:left}
+.img-box{ width:100px; display:inline-block;}
+img{ width:100%}
+.view-box{height:100px;width:200px; margin-top:30px;}
+/*.Store-footer{position:absolute; bottom:0px;margin:0 auto; height:150px;width:1200px; flex: 0 0 auto;}*/
+.right{float:right;}
+.font{ text-align:center;font-size:30px; width:80px; background-color:gray; border-radius:10%;}
+a:hover{color:#C00}
+.font-num{font-size:30px; color:#C00;}
+.bck{ background-color:gray; text-align:center;}
+.info{ float:left; margin-left:150px;}
+.center-block{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+}
+/*PersonInfo*/
+.container{position:relative; margin:0 auto; height:600px;width:1100px;}
+.font-sm{ font-size:11px;}
+.moveleft{ margin-left:30%;}
+.moveDown{ margin-top:30px;}
+.font-lg{ font-size:24px;}
+.margin-l{ margin-left:40px; width:300px; background-color:#0FC; border-radius:5px;}
+.input-md{position:relative;height:30px;width:300px;}

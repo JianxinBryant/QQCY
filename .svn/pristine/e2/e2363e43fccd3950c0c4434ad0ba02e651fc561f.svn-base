@@ -1,0 +1,68 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+	String path=request.getContextPath();
+	String basePath=request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()
+			+path+"/";
+	session.setAttribute("basePath",basePath);
+%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>上架商品</title>
+<link rel="stylesheet" href="${basePath }res/css/GuanliIndex.css">
+<script type="text/javascript" src="${basePath }res/js/jquery.form.js"></script>
+<script type="text/javascript" src="${basePath }res/ckeditor/ckeditor.js"></script>
+<script type="text/javascript">
+	  function uploadImg(){
+    	var options={
+    		url:"${basePath}vegetable/upload.do?time="+Math.random(),
+    		dataType:"json",
+    		type:"post",
+    		success:function(str){
+    		console.log(str);
+    		$("#pre").attr("src",str);
+    		$("#imgurl").val(str);
+    		}
+    	};
+    	$("#vegetableUpdate").ajaxSubmit(options);
+    }
+</script>
+</head>
+<body>
+<form style="position: absolute;top:0px; width: 95%;left: 2.5%">
+    <div class="scsp">
+        <h1 style="color: #d31e29">上架商品</h1>
+        <hr>
+    </div>
+    <div class="infomation">
+        <h2 style="margin: 15px 10px 0">商品信息</h2>
+        <hr>
+        <input type="text" placeholder="请输入商品名称" name="v_name"><br/>
+        <select style="margin-left: 15px" name="species.sp_id">
+            <c:forEach items="${speciess }" var="v">
+            	<option value="${v.sp_id}">${v.sp_name }</option>
+            </c:forEach>
+        </select><br/>
+        <input type="text" placeholder="请输入商品价格">
+        <input type="text" placeholder="请输入商品数量">
+        <input type="text" placeholder="请输入商品简介">
+         <input type="hidden" name="v_photo" id="imgurl"/>
+        <input type="file" name="file" onchange="uploadImg()"><br />
+    </div>
+    <div class="file">
+        <h2 style="margin: 15px 10px 0">上传实物图</h2>
+        <hr>
+        <input type="file">
+    </div>
+    <div class="spxq">
+        <h2 style="margin: 15px 10px 10px">商品详情</h2>
+        <textarea name="goodsDesc" id="goodsDesc" class="ckeditor" style="border: 0px"></textarea>
+        <input type="submit" value="提交" style="float: right; margin-bottom: 15px">
+    </div>
+
+</form>
+</body>
+</html>

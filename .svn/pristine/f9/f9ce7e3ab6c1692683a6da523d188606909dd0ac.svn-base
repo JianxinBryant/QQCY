@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qqcy.dao.ShoppingCartDao">
+
+	<resultMap type="ShoppingCart" id="shoppingcartmap">
+		<id column="u_id" property="u_id"/>
+		<result column="sh_sumprice" property="sh_sumprice"/>
+	</resultMap>
+	
+	<select id="getShoppingCart" parameterType="ShoppingCart" resultMap="shoppingcartmap">
+		select * from `shoppingcart` where u_id = #{u_id}
+	</select>
+	
+</mapper>

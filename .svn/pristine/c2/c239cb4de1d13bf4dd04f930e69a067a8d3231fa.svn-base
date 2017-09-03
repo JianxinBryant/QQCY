@@ -1,0 +1,53 @@
+package com.qqcy.controller;
+
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.qqcy.po.Order;
+import com.qqcy.po.OrderInfo;
+import com.qqcy.po.User;
+import com.qqcy.service.OrderInfoService;
+import com.qqcy.service.OrderService;
+
+/**
+ * 订单控制器
+ * @author Zxy
+ *
+ */
+@Controller
+@RequestMapping("/order")
+public class OrderController {
+	@Autowired
+	private OrderService orderService;
+	
+	@Autowired
+	private OrderInfoService orderInfoService;
+	
+	@RequestMapping("/order.do")
+	public String getOrderList(User user,Model model){
+		//TODO 测试
+		user = new User();
+		user.setU_id(1);
+		//end
+		
+		List<Order> orders = orderService.getOrderList(user); 
+		
+		Map<Order, List<OrderInfo>> map = orderInfoService.getOrderInfoList(orders);
+		
+		
+		model.addAttribute("orderInfoMap", map);
+		return "order/myOrder";
+	}
+	
+	@RequestMapping("/finish.do")
+	public String finishOrder(Order order,Model model){
+		System.out.println("收到的订单号："+order.getO_id());
+		orderService.finishOrder(order);
+		return getOrderList(null, model);
+	}
+}

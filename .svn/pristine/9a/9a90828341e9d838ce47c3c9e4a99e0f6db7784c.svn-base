@@ -1,0 +1,91 @@
+package com.qqcy.service.impl;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Random;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.qqcy.dao.OrderDao;
+import com.qqcy.dao.OrderInfoDao;
+import com.qqcy.dao.VegetableDao;
+import com.qqcy.po.Order;
+import com.qqcy.po.OrderInfo;
+import com.qqcy.po.ShoppingCartInfo;
+import com.qqcy.po.User;
+import com.qqcy.po.Vegetable;
+import com.qqcy.service.OrderService;
+
+@Service
+public class OrderServiceImpl implements OrderService {
+
+	@Autowired
+	private OrderDao orderDao;
+	
+	@Autowired
+	private OrderInfoDao orderInfoDao;
+	
+	@Autowired
+	private VegetableDao vegetableDao;
+
+	public List<Order> getOrderList(User user) {
+		List<Order> orders = orderDao.getOrderList(user);
+		
+		return orders;
+	}
+
+	public boolean finishOrder(Order order) {
+		order = orderDao.getOrderStatusById(order);
+		if(order.getO_status().equals("待付款") || order.getO_status().equals("待收货")){
+			orderDao.finishOrder(order);
+			return true;
+		}else{
+			System.out.println("订单编号为："+order.getO_id()+"，状态不是待付款。。或者待收货。");
+			return false;
+		}
+	}
+
+	public void createOrder() {
+		//从session里取
+		User user = new User();user.setU_id(1);
+		
+		Order order = new Order();
+		order.setO_createtime(String.valueOf(new Date().getTime()));
+		order.setO_status("待付款");
+		order.setUser(user);
+		Random r = new Random(System.currentTimeMillis());
+		String str = String.valueOf(new Date().getTime()).substring(4);
+		int o_id = Integer.parseInt(str)+r.nextInt(99999);
+		
+		order.setO_id(o_id);
+		
+		List<ShoppingCartInfo> shis = new ArrayList<ShoppingCartInfo>();
+		for(int i =0; i < 3; i++){
+			Vegetable vegetable = new Vegetable();
+			vegetable.setV_id(i+1);
+			vegetable.setV_num((i+1)*10);
+			ShoppingCartInfo shi = new ShoppingCartInfo();
+			shi.setVegetable(vegetable);
+			shi.setUser(user);
+			shi.setShi_vegenum(3.5*(i+1));
+			shi.setShi_status("true");
+			shis.add(shi);
+		}
+
+		//从shopingcart表里取
+		order.setO_sumprice(23.28);
+		orderDao.addOrder(order);
+		
+		for (ShoppingCartInfo shoppingcartInfo : shis) {
+			OrderInfo orderInfo = new OrderInfo();
+			orderInfo.setOi_vegenum(shoppingcartInfo.getShi_vegenum());
+			orderInfo.setOrder(order);
+			orderInfo.setVegetable(shoppingcartInfo.getVegetable());
+			vegetableDao.updateVegetable(shoppingcartInfo.getVegetable());
+			orderInfoDao.addOrderInfo(orderInfo);
+		}
+	}
+
+}

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qqcy.dao.VegetableDao">
+	<resultMap type="Vegetable" id="VegetableMap">
+	<id column="v_id" property="v_id"></id>
+	<result column="v_name" property="v_name"/>
+	<result column="v_price" property="v_price"/>
+	<result column="v_num" property="v_num"/>
+	<result column="v_discribe" property="v_discribe"/>
+	<result column="v_photo" property="v_photo"/>
+	<result column="v_createtime" property="v_createtime"/>
+	<result column="sp_id" property="species.sp_id"/>
+	<result column="v_ckeditor" property="v_ckeditor"/>
+	</resultMap>
+	<resultMap type="Vegetable" id="vegetablenumlist">
+		<id column="v_id" property="v_id"/>
+		<result column="v_num" property="v_num"/>
+	</resultMap>
+	 
+	 <!-- 添加蔬菜 -->
+	 	<insert id="addVegetable" parameterType="Vegetable">
+		insert into vegetable(v_name,v_price,v_num,v_discribe,v_photo,v_createtime,sp_id,v_ckeditor) values(#{v_name},#{v_price},#{v_num},#{v_discribe},#{v_photo},#{v_createtime},#{species.sp_id},#{v_ckeditor})
+	</insert>
+	
+	<delete id="deleteVegetable" parameterType="Vegetable" >
+		delete from vegetable where v_id=#{v_id}
+	</delete>
+	<select id="getVegetableList" parameterType="Vegetable" resultMap="VegetableMap">
+	select * from vegetable 
+	<where>
+	<if test=" v_name != null and v_name !='' ">
+		and v_name like #{v_name}
+	</if>
+	<if test="species != null and species.sp_id != null and species.sp_id != 0">
+		and sp_id=#{species.sp_id}
+	</if>
+	</where>              
+	limit #{start},#{length}
+	</select>
+	<update id="updateVegetable" parameterType="Vegetable">
+	update vegetable set v_name=#{v_name},v_price=#{v_price},v_num=#{v_num},v_discribe=#{v_discribe},v_photo=#{v_photo},v_createtime=#{v_createtime},sp_id=#{species.sp_id},v_ckeditor=#{v_ckeditor} where v_id=#{v_id}
+	</update>
+	<select id="getVegetable" parameterType="Vegetable" resultMap="VegetableMap">
+	select * from vegetable
+	<where>
+	<if test="v_id !=null and v_id !=0">
+		and v_id = #{v_id}
+	</if>
+	<if test="v_name !=null and v_name != '' ">
+		and v_name=#{v_name}
+	</if>
+	</where>
+	</select>
+	<select id="getCount" parameterType="Vegetable" resultType="long">
+	select count(*) from vegetable
+	<where>
+	<if test="v_name != null and v_name !='' ">
+		and v_name like #{v_name}
+	</if>
+		<if test="species != null and species.sp_id != null and species.sp_id != 0">
+		and sp_id=#{species.sp_id}
+	</if>
+	</where>
+	</select>
+	
+	<!-- 通过v_id得到蔬菜数量 -->
+	<select id="getVegetableNumById" parameterType="Integer" resultMap="vegetablenumlist">
+		select v_num from vegetable where v_id = #{v_id}
+	</select>
+		
+	<!-- 通过v_id单查询 -->
+	<select id="getVegetableById" parameterType="Integer" resultMap="VegetableMap">
+		select * from vegetable where v_id = #{v_id}
+	</select>
+	
+</mapper>

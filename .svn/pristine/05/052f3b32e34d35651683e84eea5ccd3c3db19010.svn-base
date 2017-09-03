@@ -1,0 +1,54 @@
+package com.qqcy.dao;
+
+import java.util.List;
+
+import com.qqcy.po.Vegetable;
+
+/**
+ * 蔬菜方法接口
+ * @author Administrator
+ *
+ */
+public interface VegetableDao {
+	/**
+	 * 删除蔬菜的信息
+	 * @param vegetable
+	 */
+	public void deleteVegetable(Vegetable vegetable);
+	/**
+	 * 根据条件查询所有蔬菜信息
+	 * @param vegetable
+	 * @return
+	 */
+	public List<Vegetable> getVegetableList(Vegetable vegetable);
+	/**
+	 * 修改所有蔬菜信息
+	 * @param vegetable
+	 */
+	public void updateVegetable(Vegetable vegetable);
+	/**
+	 * 根据条件查询某个学生信息
+	 * @param vegetable
+	 * @return
+	 */
+	public Vegetable getVegetable(Vegetable vegetable);
+	/**
+	 * 得到蔬菜的总数
+	 * @param vegetable
+	 * @return
+	 */
+	public long getCount(Vegetable vegetable);
+	/**
+	 * 通过id找到蔬菜实体
+	 * @param id
+	 * @return
+	 */
+	public Vegetable getVegetableById(Integer id);
+	/**
+	 * 添加商品信息
+	 * @param vegetable
+	 */
+	public Vegetable addVegetable(Vegetable vegetable);
+	
+	public Vegetable getVegetableNumById(Integer id);
+}

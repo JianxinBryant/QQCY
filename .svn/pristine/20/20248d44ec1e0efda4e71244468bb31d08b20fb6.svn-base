@@ -1,0 +1,36 @@
+package com.qqcy.service.impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.qqcy.dao.OrderDao;
+import com.qqcy.po.Order;
+import com.qqcy.po.User;
+import com.qqcy.service.OrderService;
+
+@Service
+public class OrderServiceImpl implements OrderService {
+
+	@Autowired
+	private OrderDao orderDao;
+
+	public List<Order> getOrderList(User user) {
+		List<Order> orders = orderDao.getOrderList(user);
+		
+		return orders;
+	}
+
+	public boolean finishOrder(Order order) {
+		order = orderDao.getOrderStatusById(order);
+		if(order.getO_status().equals("待付款") || order.getO_status().equals("待收货")){
+			orderDao.finishOrder(order);
+			return true;
+		}else{
+			System.out.println("订单编号为："+order.getO_id()+"，状态不是待付款。。或者待收货。");
+			return false;
+		}
+	}
+
+}

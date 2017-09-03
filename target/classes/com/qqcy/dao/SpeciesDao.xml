@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qqcy.dao.SpeciesDao">
+	<resultMap type="Species" id="speciesMap">
+	<id column="sp_id" property="sp_id"/>
+	<result column="sp_name" property="sp_name"/>
+	</resultMap>
+	<select id="getSpeciesList" resultMap="speciesMap">
+	select * from species
+	</select>
+	<select id="getSpeciesListById" parameterType="Integer" resultMap="speciesMap">
+	select * from species where sp_id=#{sp_id}
+	</select>
+</mapper>

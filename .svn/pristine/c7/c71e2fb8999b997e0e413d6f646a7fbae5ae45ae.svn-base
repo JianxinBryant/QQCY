@@ -1,0 +1,29 @@
+package com.qqcy.po;
+
+import com.qqcy.util.BaseBean;
+/**
+ * 购物车实体
+ * @author Administrator
+ *
+ */
+public class ShoppingCart extends BaseBean{
+	private Integer u_id;
+	
+	private double sh_sumprice;
+
+	public Integer getU_id() {
+		return u_id;
+	}
+
+	public void setU_id(Integer u_id) {
+		this.u_id = u_id;
+	}
+
+	public double getSh_sumprice() {
+		return sh_sumprice;
+	}
+
+	public void setSh_sumprice(double sh_sumprice) {
+		this.sh_sumprice = sh_sumprice;
+	}
+}

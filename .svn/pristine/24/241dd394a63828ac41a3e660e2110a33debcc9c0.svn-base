@@ -1,0 +1,21 @@
+@CHARSET "UTF-8";
+.yuanjiao {
+     border-radius: 25px;
+    border: 2px solid #8AC007;
+    padding: 20px; 
+}
+.biaoge{
+	margin: 
+}
+
+.biaogetou{
+	height: 32px;
+	background: #f5f5f5;
+	color: #666;
+	font-weight: 400;
+}
+
+.datatime{
+	height: 25px;
+	margin-right: 30px;
+}

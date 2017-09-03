@@ -1,0 +1,44 @@
+package com.qqcy.dao;
+
+import java.util.List;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import com.qqcy.po.Order;
+import com.qqcy.po.User;
+
+/**
+ * 订单测试类
+ * @author Zxy
+ *
+ */
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations="classpath:applicationContext.xml")
+public class OrderDaoTest {
+	
+	@Autowired
+	private OrderDao orderDao;
+	
+	@Test
+	public void testGetOrderList(){
+		User user = new User();
+		user.setU_id(1);
+		List<Order> orders = orderDao.getOrderList(user);
+		for (Order order : orders) {
+			System.out.println(order.getO_sumprice()+"....."+order.getO_status());
+		}
+	}
+	
+	@Test
+	public void testGetOrderStatus(){
+		Order order = new Order();
+		order.setO_id(1);
+		order = orderDao.getOrderStatusById(order);
+		System.out.println(order.getO_status());
+	}
+	
+}

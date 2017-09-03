@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qqcy.dao.ShoppingCartInfoDao">
+
+	<resultMap type="ShoppingCartInfo" id="shoppingcartinfomap">
+		<id column="shi_id" property="shi_id"/>
+		<result column="shi_vegenum" property="shi_vegenum"/>
+		<result column="shi_status" property="shi_status"/>
+		<result column="u_id" property="user.u_id"/>
+		<result column="v_id" property="vegetable.v_id"/>
+	</resultMap>
+
+	<insert id="addCartInfo" parameterType="ShoppingCartInfo">
+		insert into shoppingcartinfo(shi_vegenum,v_id,u_id,shi_status) values(#{shi_vegenum},#{vegetable.v_id},#{user.u_id},#{shi_status})
+	</insert>
+	
+	<select id="getVegetableList" parameterType="Vegetable" resultMap="shoppingcartinfomap">
+		select * from shoppingcartinfo
+		<where>
+			<if test="v_id != null and v_id != 0">
+				and v_id = #{v_id}
+			</if>
+		</where>
+	</select>
+	
+	<select id="getCartInfoList" parameterType="ShoppingCartInfo" resultMap="shoppingcartinfomap">
+		select * from shoppingcartinfo
+		<where>
+	    	<if test="user != null and user.u_id != null and user.u_id != 0">
+	    		and u_id = #{user.u_id}
+	    	</if>
+	    	
+			
+		</where>
+	</select>
+	
+	<select id="getCartInfoByV_id" parameterType="ShoppingCartInfo" resultMap="shoppingcartinfomap">
+		select * from shoppingcartinfo
+		<where>
+			<if test="user != null and user.u_id != null and user.u_id != 0">
+				and u_id = #{user.u_id}
+			</if>
+			<if test="vegetable != null and vegetable.v_id != null and vegetable.v_id != 0">
+				and v_id = #{vegetable.v_id}
+			</if>
+		</where>
+	</select>
+	
+	<update id="updateCartInfoVege_num" parameterType="ShoppingCartInfo">
+		update shoppingcartinfo set shi_vegenum = #{shi_vegenum}
+		<where>
+			<if test="user != null and user.u_id != null and user.u_id != 0">
+				and u_id = #{user.u_id}
+			</if>
+			<if test="vegetable != null and vegetable.v_id != null and vegetable.v_id != 0">
+				and v_id = #{vegetable.v_id}
+			</if>
+		</where>
+	</update>
+	
+	
+	
+	<update id="updateCartInfoShi_status" parameterType="ShoppingCartInfo">
+		update shoppingcartinfo set shi_status = #{shi_status}
+		<where>
+			<if test="user != null and user.u_id != null and user.u_id != 0">
+				and u_id = #{user.u_id}
+			</if>
+			<if test="vegetable != null and vegetable.v_id != null and vegetable.v_id != 0">
+				and v_id = #{vegetable.v_id}
+			</if>
+		</where>
+	</update>
+	
+	<update id="deleteCartInfo" parameterType="ShoppingCartInfo">
+		delete from shoppingcartinfo
+		<where>
+			<if test="user != null and user.u_id != null and user.u_id != 0">
+				and u_id = #{user.u_id}
+			</if>
+			<if test="vegetable != null and vegetable.v_id != null and vegetable.v_id != 0">
+				and v_id = #{vegetable.v_id}
+			</if>
+		</where>
+	</update>
+</mapper>

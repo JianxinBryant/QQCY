@@ -1,0 +1,5 @@
+package com.qqcy.dao;
+
+public class VegetableDao {
+
+}

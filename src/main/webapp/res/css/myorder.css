@@ -1,0 +1,97 @@
+@CHARSET "UTF-8";
+.orderkuang {
+    padding: 20px; 
+}
+.biaoge{
+	margin: 0 auto;
+	width: 980px;
+}
+
+.biaogetou{
+	height: 32px;
+	background: #f5f5f5;
+	color: #666;
+	font-weight: 400;
+}
+
+.orderid{
+	width: 275px;
+	margin-right: 120px;
+}
+
+.shangpinname{
+	padding-left: 35px;
+}
+
+.shuliang{
+	width: 185px;
+}
+
+.jine{
+	width: 185px;
+}
+
+.shucaiphoto{
+	margin: 25px;
+	width: 180px;
+	height: 120px;
+}
+.shucaimingcheng{
+	margin-left: 20px;
+}
+
+.shucaimiaoshu{
+	margin-left: 20px;
+}
+.main-foot{
+	margin-top: 50px;
+}
+
+#main-foot-left{
+	float: left;
+	margin-top: 80px;
+	margin-bottom: 35px;
+}
+
+.main-foot-right{
+	margin-right: 5px;
+	float: right;
+}
+
+#jiesuananniu{
+	width: 150px;
+	height: 35px;
+	font-size: 20px;
+	float: right;
+	padding-top: 8px;
+}
+
+#mask{ 
+	background: #000;
+	opacity: .6;
+	filter: alpha(opacity = 60);
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 1000;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

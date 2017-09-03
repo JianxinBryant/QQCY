@@ -1,0 +1,17 @@
+package com.qqcy.dao;
+
+import java.util.List;
+
+import com.qqcy.po.Order;
+import com.qqcy.po.User;
+
+public interface OrderDao {
+
+	public List<Order> getOrderList(User user);
+	
+	public Order getOrderStatusById(Order order);
+	
+	public boolean finishOrder(Order order);
+
+	public void addOrder(Order order);
+}

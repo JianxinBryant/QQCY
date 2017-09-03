@@ -1,0 +1,25 @@
+package com.qqcy.po;
+
+import com.qqcy.util.BaseBean;
+
+public class ShoppingcartInfo extends BaseBean{
+	private Integer shi_id;
+	
+	private double shi_vegenum;
+
+	public Integer getShi_id() {
+		return shi_id;
+	}
+
+	public void setShi_id(Integer shi_id) {
+		this.shi_id = shi_id;
+	}
+
+	public double getShi_vegenum() {
+		return shi_vegenum;
+	}
+
+	public void setShi_vegenum(double shi_vegenum) {
+		this.shi_vegenum = shi_vegenum;
+	}
+}

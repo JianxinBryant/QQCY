@@ -1,4 +1,4 @@
-package com.qqcy.controller;
+﻿package com.qqcy.controller;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -10,7 +10,7 @@ import com.qqcy.po.User;
 import com.qqcy.util.BaseController;
 /**
  * 提供用户注册界面
- * @author Administrator
+ * @author 张舰心
  *
  */
 public class RegisterController extends BaseController {

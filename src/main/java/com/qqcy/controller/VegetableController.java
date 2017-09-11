@@ -1,4 +1,4 @@
-package com.qqcy.controller;
+﻿package com.qqcy.controller;
 
 
 import java.io.IOException;
@@ -39,7 +39,7 @@ import com.sun.jersey.api.client.WebResource;
 /**
  * 蔬菜管理的控制器
  * 
- * @author Administrator
+ * @author 张舰心
  *
  */
 @Controller
